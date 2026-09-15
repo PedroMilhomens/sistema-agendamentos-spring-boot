@@ -35,7 +35,7 @@ public class AgendamentoController {
 
     @PostMapping
     public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequest agendamentoPostRequest) {
-        return ResponseEntity.ok(agendamentoService.save(agendamentoPostRequest));
+        return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequest), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
