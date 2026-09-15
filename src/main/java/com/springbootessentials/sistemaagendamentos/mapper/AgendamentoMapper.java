@@ -6,7 +6,7 @@ import com.springbootessentials.sistemaagendamentos.requests.AgendamentoPutReque
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public abstract class AgendamentoMapper {
     public static final AgendamentoMapper INSTANCE = Mappers.getMapper(AgendamentoMapper.class);
 
