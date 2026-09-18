@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("agendamentos")
+@RequestMapping("/api/agendamentos")
 @Log4j2
 @RequiredArgsConstructor
 public class AgendamentoController {
@@ -33,7 +33,7 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoService.findById(id));
     }
 
-    @PostMapping
+    @PostMapping(path = "/post")
     public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequest agendamentoPostRequest) {
         return ResponseEntity.ok(agendamentoService.save(agendamentoPostRequest));
     }
@@ -43,7 +43,7 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamentoService.delete(id),  HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping(path = "/put")
     public ResponseEntity<Void> update(@RequestBody AgendamentoPutRequest agendamentoPutRequest) {
         return new ResponseEntity<>(agendamentoService.replace(agendamentoPutRequest), HttpStatus.NO_CONTENT);
     }
