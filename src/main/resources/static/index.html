@@ -42,8 +42,27 @@
         <input type="number" name="doctorId" id="doctorId" required>
         <br><br>
         <button type="submit" id="btnCadastro">Cadastrar Agendamento</button>
-        <br>
+        <br><br>
     </form>
+
+    <dialog class="modal" id="editDialog">
+        <p id="editTransferId"></p>
+
+        <p>Edit Element <button onclick="document.getElementById('editDialog').close()">X</button></p>
+
+
+    </dialog>
+
+    <dialog class="modal" id="deleteDialog">
+        <p id="delTransferId"></p>
+
+        <p>Tem certeza?</p>
+
+        <button id="confirmDelete">Confirm</button>
+        <button onclick="document.getElementById('deleteDialog').close()">Cancel</button>
+
+
+    </dialog>
 
     <script src="js/script.js"></script>
 </body>

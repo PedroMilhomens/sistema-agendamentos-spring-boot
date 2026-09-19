@@ -1,3 +1,4 @@
+carregarTabela();
 
 // GET METHOD
 function carregarTabela() {
@@ -21,6 +22,14 @@ function carregarTabela() {
                     <td>${agendamento.data}</td>
                     <td>${agendamento.hora}</td>
                     <td>${agendamento.descricao}</td>
+                    <td><button id="edit" onclick="showModal(
+                        'editDialog', 
+                        ${agendamento.id}, 
+                        'editTransferId')">✏️</button></td>
+                    <td><button id="delete" onclick="showModal(
+                        'deleteDialog', 
+                        ${agendamento.id}, 
+                        'delTransferId')">🗑️</button></td>
                 `;
 
                 // Adiciona a linha dentro do corpo da tabela
@@ -58,3 +67,37 @@ function salvarAgendamentos(event) {
         })
         .catch(erro => console.error('Erro no POST:', erro));
 }
+
+// PUT METHOF
+/*document.getElementById('edit').addEventListener('click', editarAgendamento);
+function editarAgendamento(id, event) {
+}
+*/
+
+// DELETE METHOD
+document.getElementById('confirmDelete').addEventListener('click', excluirAgendamento);
+function excluirAgendamento(event) {
+    event.preventDefault();
+
+    const id = Number(document.getElementById("delTransferId").innerHTML);
+
+    fetch(`/api/agendamentos/${id}`, {method: 'DELETE'})
+        .then(response => {
+            if (response.ok) {
+                carregarTabela()
+            }
+        })
+        .catch(erro => console.error('Erro no DELETE:', erro));
+
+    document.getElementById('deleteDialog').close();
+}
+
+function showModal(dialog, id, elementID) {
+    const transferId = document.getElementById(elementID);
+
+    document.getElementById(dialog).showModal();
+    transferId.innerHTML = id;
+
+
+}
+
