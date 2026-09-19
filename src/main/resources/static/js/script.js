@@ -1,5 +1,7 @@
 carregarTabela();
 
+let tempId = null;
+
 // GET METHOD
 function carregarTabela() {
     fetch("api/agendamentos")
@@ -26,10 +28,7 @@ function carregarTabela() {
                         'editDialog', 
                         ${agendamento.id}, 
                         'editTransferId')">✏️</button></td>
-                    <td><button id="delete" onclick="showModal(
-                        'deleteDialog', 
-                        ${agendamento.id}, 
-                        'delTransferId')">🗑️</button></td>
+                    <td><button id="delete" onclick="setDel(${agendamento.id})">🗑️</button></td>
                 `;
 
                 // Adiciona a linha dentro do corpo da tabela
@@ -68,36 +67,38 @@ function salvarAgendamentos(event) {
         .catch(erro => console.error('Erro no POST:', erro));
 }
 
-// PUT METHOF
-/*document.getElementById('edit').addEventListener('click', editarAgendamento);
-function editarAgendamento(id, event) {
-}
-*/
 
 // DELETE METHOD
-document.getElementById('confirmDelete').addEventListener('click', excluirAgendamento);
-function excluirAgendamento(event) {
-    event.preventDefault();
+function setDel(id) {
+    tempId = Number(id);
+    showModal('deleteDialog');
+}
 
-    const id = Number(document.getElementById("delTransferId").innerHTML);
+document.getElementById('confirmDelete').addEventListener('click', confirmarExclusao);
+function confirmarExclusao() {
+    if (tempId != null) {
+        excluirAgendamento();
+        document.getElementById('showID').innerHTML = `Working ${tempId}`;
+        tempId = null;
+    }
+    else {
+        document.getElementById('showID').innerHTML = `ERROR ${tempId}`;
+    }
+}
 
-    fetch(`/api/agendamentos/${id}`, {method: 'DELETE'})
+function excluirAgendamento() {
+
+    fetch(`/api/agendamentos/${tempId}`, {method: 'DELETE'})
         .then(response => {
             if (response.ok) {
-                carregarTabela()
+                carregarTabela();
             }
         })
-        .catch(erro => console.error('Erro no DELETE:', erro));
+        .catch(error => console.error('Erro no DELETE:', error));
 
     document.getElementById('deleteDialog').close();
 }
 
-function showModal(dialog, id, elementID) {
-    const transferId = document.getElementById(elementID);
-
-    document.getElementById(dialog).showModal();
-    transferId.innerHTML = id;
 
 
-}
-
+function showModal(dialog) { document.getElementById(dialog).showModal(); }
