@@ -18,6 +18,8 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String nome;
     private String data;
     private String hora;
     private String descricao;

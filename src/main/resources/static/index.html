@@ -8,12 +8,14 @@
 <body>
     <h1>Teste com a API</h1>
 
-    <button id="btnAtualizar">Buscar agendamentos</button>
+    <h2>GET METHOD</h2>
+    <button id="btnAtualizar" onclick="carregarTabela()">Buscar agendamentos</button>
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nome</th>
                 <th>Data</th>
                 <th>Hora</th>
                 <th>Descricao</th>
@@ -21,6 +23,27 @@
         </thead>
         <tbody id="corpo"></tbody>
     </table>
+
+    <h2>POST METHOD</h2>
+    <form id="formCadastro">
+        <label for="nome">Nome:</label><br>
+        <input type="text" name="nome" id="nome" required>
+        <br><br>
+        <label for="data">Data:</label><br>
+        <input type="date" name="data" id="data" required>
+        <br><br>
+        <label for="hora">Hora:</label><br>
+        <input type="time" name="hora" id="hora" required>
+        <br>
+        <label for="descricao">Descricao:</label><br>
+        <input type="text" name="descricao" id="descricao" required>
+        <br><br>
+        <label for="doctorId">Doutor:</label> <br>
+        <input type="number" name="doctorId" id="doctorId" required>
+        <br><br>
+        <button type="submit" id="btnCadastro">Cadastrar Agendamento</button>
+        <br>
+    </form>
 
     <script src="js/script.js"></script>
 </body>
