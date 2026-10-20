@@ -21,7 +21,7 @@ public class AgendamentoService {
 
     public Agendamento findById(Integer id) {
         return agendamentoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Agendamento nao encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Agendamento nao encontrado"));
     }
 
     public Agendamento save(AgendamentoPostRequest agendamentoPostRequest) {
@@ -33,7 +33,6 @@ public class AgendamentoService {
         return null;
     }
 
-    // UNFINISHED
     public Void replace(AgendamentoPutRequest agendamentoPutRequest) {
         Agendamento savedAgendamento = findById(agendamentoPutRequest.getId());
         Agendamento agendamento = AgendamentoMapper.INSTANCE.ToAgendamento(agendamentoPutRequest);
@@ -41,4 +40,6 @@ public class AgendamentoService {
         agendamentoRepository.save(agendamento);
         return null;
     }
+
+
 }
