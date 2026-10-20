@@ -33,7 +33,7 @@ public class AgendamentoService {
         return null;
     }
 
-    public Void replace(AgendamentoPutRequest agendamentoPutRequest) {
+    public Void update(AgendamentoPutRequest agendamentoPutRequest) {
         Agendamento savedAgendamento = findById(agendamentoPutRequest.getId());
         Agendamento agendamento = AgendamentoMapper.INSTANCE.ToAgendamento(agendamentoPutRequest);
         agendamento.setId(savedAgendamento.getId());

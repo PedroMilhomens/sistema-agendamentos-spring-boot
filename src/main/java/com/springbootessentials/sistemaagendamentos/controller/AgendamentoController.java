@@ -28,7 +28,7 @@ public class AgendamentoController {
         return agendamentoService.listAll();
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/by-id/{id}")
     public ResponseEntity<Agendamento> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(agendamentoService.findById(id));
     }
@@ -38,13 +38,13 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoService.save(agendamentoPostRequest));
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/del-by-id/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(agendamentoService.delete(id),  HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody AgendamentoPutRequest agendamentoPutRequest) {
-        return new ResponseEntity<>(agendamentoService.replace(agendamentoPutRequest), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(agendamentoService.update(agendamentoPutRequest), HttpStatus.NO_CONTENT);
     }
 }

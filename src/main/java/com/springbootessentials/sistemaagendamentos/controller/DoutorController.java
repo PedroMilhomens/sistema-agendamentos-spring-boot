@@ -1,6 +1,8 @@
 package com.springbootessentials.sistemaagendamentos.controller;
 
 import com.springbootessentials.sistemaagendamentos.domain.Doutor;
+import com.springbootessentials.sistemaagendamentos.requests.DoutorPostRequest;
+import com.springbootessentials.sistemaagendamentos.requests.DoutorPutRequest;
 import com.springbootessentials.sistemaagendamentos.service.DoutorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -33,7 +35,18 @@ public class DoutorController {
     }
 
     @PostMapping
-    public ResponseEntity<Doutor> save(@RequestBody Doutor doutor) {
-    return ResponseEntity.ok(doutorService.save(doutor));
+    public ResponseEntity<Doutor> save(@RequestBody DoutorPostRequest doutorPostRequest) {
+        return ResponseEntity.ok(doutorService.save(doutorPostRequest));
+    }
+
+    @DeleteMapping(path = "/del-by-id/{id}")
+    public ResponseEntity<Void> delete(@RequestBody Integer id) {
+        return new ResponseEntity<>(doutorService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
+
+    @PutMapping
+    public ResponseEntity<Void> update(@RequestBody DoutorPutRequest doutorPutRequest) {
+        return new ResponseEntity<>(doutorService.update(doutorPutRequest), HttpStatus.NO_CONTENT);
     }
 }
