@@ -4,6 +4,7 @@ import com.springbootessentials.sistemaagendamentos.domain.Doutor;
 import com.springbootessentials.sistemaagendamentos.requests.doutorRequests.DoutorPostRequest;
 import com.springbootessentials.sistemaagendamentos.requests.doutorRequests.DoutorPutRequest;
 import com.springbootessentials.sistemaagendamentos.service.DoutorService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class DoutorController {
         return doutorService.findAll();
     }
 
-    @GetMapping(path = "/by-id/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Doutor> findById(@PathVariable Integer id) {
         return new ResponseEntity<>(doutorService.findById(id), HttpStatus.OK);
     }
@@ -35,18 +36,18 @@ public class DoutorController {
     }
 
     @PostMapping
-    public ResponseEntity<Doutor> save(@RequestBody DoutorPostRequest doutorPostRequest) {
+    public ResponseEntity<Doutor> save(@Valid @RequestBody DoutorPostRequest doutorPostRequest) {
         return new ResponseEntity<>(doutorService.save(doutorPostRequest), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/del-by-id/{id}")
-    public ResponseEntity<Void> delete(@PathVariable @RequestBody Integer id) {
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(doutorService.delete(id), HttpStatus.NO_CONTENT);
     }
 
 
-    @PutMapping
-    public ResponseEntity<Void> update(@RequestBody DoutorPutRequest doutorPutRequest) {
-        return new ResponseEntity<>(doutorService.update(doutorPutRequest), HttpStatus.NO_CONTENT);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @Valid @RequestBody DoutorPutRequest doutorPutRequest) {
+        return new ResponseEntity<>(doutorService.update(id, doutorPutRequest), HttpStatus.NO_CONTENT);
     }
 }

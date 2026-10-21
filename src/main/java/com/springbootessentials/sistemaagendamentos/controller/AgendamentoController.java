@@ -5,6 +5,7 @@ import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests
 import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests.AgendamentoPutRequest;
 import com.springbootessentials.sistemaagendamentos.service.AgendamentoService;
 import com.springbootessentials.sistemaagendamentos.util.DateUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -28,23 +29,24 @@ public class AgendamentoController {
         return agendamentoService.listAll();
     }
 
-    @GetMapping(path = "/by-id/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Agendamento> findById(@PathVariable Integer id) {
         return new  ResponseEntity<>(agendamentoService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequest agendamentoPostRequest) {
+    public ResponseEntity<Agendamento> save(@Valid @RequestBody AgendamentoPostRequest agendamentoPostRequest) {
         return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequest), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/del-by-id/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(agendamentoService.delete(id),  HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> update(@RequestBody AgendamentoPutRequest agendamentoPutRequest) {
-        return new ResponseEntity<>(agendamentoService.update(agendamentoPutRequest), HttpStatus.NO_CONTENT);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id,
+                                       @Valid @RequestBody AgendamentoPutRequest agendamentoPutRequest) {
+        return new ResponseEntity<>(agendamentoService.update(id, agendamentoPutRequest), HttpStatus.NO_CONTENT);
     }
 }

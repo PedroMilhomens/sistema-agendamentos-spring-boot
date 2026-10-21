@@ -1,35 +1,24 @@
-# API de Agendamentos com Java Spring
+# API de Agendamentos com Spring Java
 
-Uma API REST para consultar, criar, modificar e deletar agendemantos
-resgistrados em um Banco de Dados MySQL
+Uma API REST para consultar, criar, atualizar e excluir agendamentos
+armazenados em um banco de dados MySQL.
 
-## Tecnologias Utilizaddas: 
-- Java 21
-- Spring Framework
+## Tecnologias
+- Java 17
+- Spring Framework (Spring Boot)
 - Docker
 - MySQL
-- HTML5 (Ainda nao implementado)
-- CSS3 (Ainda nao implementado)
-- JavaScript (Ainda nao implementado)
 
-## Implementacoes:
-- [x] Entidade Agendamentos;
-  - [x] Domain;
-  
-  - [x] Controller:
-    - [x] Get Mapping;
-    - [x] Post Mapping;
-    - [x] Delete Mapping;
-    - [x] Put Mapping.
+## Endpoints
 
-  - [x] Service:
-    - [x] findById(Integer id)
-    - [x] save()
-    - [x] delete(Integer id)
-    - [x] replace()
+- `GET /api/agendamentos` e `GET /api/agendamentos/{id}`
+- `POST /api/agendamentos`, `PUT /api/agendamentos/{id}` e `DELETE /api/agendamentos/{id}`
+- As mesmas rotas CRUD estão disponíveis em `/api/clientes` e `/api/doutores`.
+- A criação de clientes retorna `201 Created`, sem corpo na resposta.
+- As datas dos agendamentos devem usar o formato ISO (`yyyy-MM-dd`) e os horários, `HH:mm:ss` (por exemplo, `2026-10-21` e `09:30:00`). Os IDs do médico e do cliente são obrigatórios.
 
-  - [x] Mapper
-    - [x] Post Request;
-    - [x] Put Request.
-  
-  - [ ] Spring Security
+As rotas de recursos usam `{id}` para consultar, atualizar e excluir registros. Em instalações existentes, pode ser necessário migrar as colunas de data e hora dos agendamentos dos tipos de texto anteriores para `DATE` e `TIME` do SQL.
+
+## Como executar
+
+Inicie o MySQL com `docker compose up -d` e, em seguida, execute a aplicação com `./mvnw spring-boot:run`. O banco de dados configurado é `agendamentos`, em `localhost:3306`.

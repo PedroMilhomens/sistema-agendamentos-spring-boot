@@ -34,12 +34,12 @@ public class DoutorService {
     }
 
     public Void delete(Integer id) {
-        doutorRepository.deleteById(id);
+        doutorRepository.delete(findById(id));
         return null;
     }
 
-    public Void update(DoutorPutRequest doutorPutRequest) {
-        Doutor savedDoutor = findById(doutorPutRequest.getId());
+    public Void update(Integer id, DoutorPutRequest doutorPutRequest) {
+        Doutor savedDoutor = findById(id);
         Doutor doutor = DoutorMapper.INSTANCE.ToDoutor(doutorPutRequest);
         doutor.setId(savedDoutor.getId());
         doutorRepository.save(doutor);
