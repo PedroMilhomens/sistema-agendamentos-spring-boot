@@ -1,4 +1,4 @@
-package com.springbootessentials.sistemaagendamentos.requests;
+package com.springbootessentials.sistemaagendamentos.requests.doutorRequests;
 
 import lombok.Data;
 

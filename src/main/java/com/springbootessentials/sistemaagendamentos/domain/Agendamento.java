@@ -22,7 +22,8 @@ public class Agendamento {
     private String hora;
     private String descricao;
     // Foreing key
-    private Integer doctorId;
+    private Integer idDoutor;
+    private Integer idCliente;
 
 
 }
