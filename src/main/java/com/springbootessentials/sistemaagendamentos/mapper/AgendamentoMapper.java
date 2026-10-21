@@ -1,8 +1,8 @@
 package com.springbootessentials.sistemaagendamentos.mapper;
 
 import com.springbootessentials.sistemaagendamentos.domain.Agendamento;
-import com.springbootessentials.sistemaagendamentos.requests.AgendamentoPostRequest;
-import com.springbootessentials.sistemaagendamentos.requests.AgendamentoPutRequest;
+import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests.AgendamentoPostRequest;
+import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests.AgendamentoPutRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

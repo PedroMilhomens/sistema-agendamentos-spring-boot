@@ -1,8 +1,8 @@
 package com.springbootessentials.sistemaagendamentos.mapper;
 
 import com.springbootessentials.sistemaagendamentos.domain.Doutor;
-import com.springbootessentials.sistemaagendamentos.requests.DoutorPostRequest;
-import com.springbootessentials.sistemaagendamentos.requests.DoutorPutRequest;
+import com.springbootessentials.sistemaagendamentos.requests.doutorRequests.DoutorPostRequest;
+import com.springbootessentials.sistemaagendamentos.requests.doutorRequests.DoutorPutRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

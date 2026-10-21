@@ -1,9 +1,9 @@
-package com.springbootessentials.sistemaagendamentos.requests;
+package com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests;
 
 import lombok.Data;
 
 @Data
-public class AgendamentoPutRequest {
+public class AgendamentoPostRequest {
     private Integer id;
     private String data;
     private String hora;

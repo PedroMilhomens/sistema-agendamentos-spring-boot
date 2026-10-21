@@ -1,8 +1,8 @@
 package com.springbootessentials.sistemaagendamentos.controller;
 
 import com.springbootessentials.sistemaagendamentos.domain.Agendamento;
-import com.springbootessentials.sistemaagendamentos.requests.AgendamentoPostRequest;
-import com.springbootessentials.sistemaagendamentos.requests.AgendamentoPutRequest;
+import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests.AgendamentoPostRequest;
+import com.springbootessentials.sistemaagendamentos.requests.agendamentoRequests.AgendamentoPutRequest;
 import com.springbootessentials.sistemaagendamentos.service.AgendamentoService;
 import com.springbootessentials.sistemaagendamentos.util.DateUtil;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,12 @@ public class AgendamentoController {
 
     @GetMapping(path = "/by-id/{id}")
     public ResponseEntity<Agendamento> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(agendamentoService.findById(id));
+        return new  ResponseEntity<>(agendamentoService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequest agendamentoPostRequest) {
-        return ResponseEntity.ok(agendamentoService.save(agendamentoPostRequest));
+        return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequest), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/del-by-id/{id}")

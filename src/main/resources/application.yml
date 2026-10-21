@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: sistema-agendamentos
+
+  web:
+    error:
+      include-stacktrace: never
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/agendamentos?userSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
