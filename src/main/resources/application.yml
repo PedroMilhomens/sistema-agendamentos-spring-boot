@@ -14,3 +14,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: ${SESSION_COOKIE_SECURE:false}
+        same-site: lax
+
+app:
+  doctor-provisioning-token: ${DOCTOR_PROVISIONING_TOKEN:}
